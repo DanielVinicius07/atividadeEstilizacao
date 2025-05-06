@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Usuários</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Gerenciador de Usuários</h1>
+            <p>Cadastre, visualize, edite e exclua usuários</p>
+            
+            <div class="theme-switch">
+                <i class="ph ph-moon"></i>
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider"></span>
+                </label>
+                <i class="ph ph-sun"></i>
+            </div>
+        </header>
+
+        <div class="card">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-with-icon">
+                        <i class="ph ph-user input-icon"></i>
+                        <input type="text" id="nome" placeholder="Nome" autocomplete="off" autofocus>
+                    </div>
+                    <div class="error-message" id="nome-error"></div>
+                </div>
+                <div class="input-group">
+                    <div class="input-with-icon">
+                        <i class="ph ph-envelope input-icon"></i>
+                        <input type="email" id="email" placeholder="E-mail" autocomplete="off">
+                    </div>
+                    <div class="error-message" id="email-error"></div>
+                </div>
+                <button id="btnCriar" class="btn-primary">
+                    <i class="ph ph-plus-circle"></i>
+                    Adicionar
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <ul id="listaUsuarios" class="user-list">
+                <!-- Lista de usuários será renderizada aqui -->
+            </ul>
+            <div id="emptyState" class="empty-state">
+                <i class="ph ph-users icon-lg"></i>
+                <p>Nenhum usuário cadastrado. Adicione um usuário acima.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Edição -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="ph ph-pencil"></i>
+                    Editar Usuário
+                </h3>
+                <button class="modal-close" id="closeEditModal">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group" style="margin-bottom: 1rem;">
+                    <div class="input-with-icon">
+                        <i class="ph ph-user input-icon"></i>
+                        <input type="text" id="editNome" placeholder="Nome" autofocus>
+                    </div>
+                    <div class="error-message" id="edit-nome-error"></div>
+                </div>
+                <div class="input-group">
+                    <div class="input-with-icon">
+                        <i class="ph ph-envelope input-icon"></i>
+                        <input type="email" id="editEmail" placeholder="E-mail">
+                    </div>
+                    <div class="error-message" id="edit-email-error"></div>
+                </div>
+                <input type="hidden" id="editId">
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancelEdit">
+                    <i class="ph ph-x"></i>
+                    Cancelar
+                </button>
+                <button class="btn-primary" id="saveEdit">
+                    <i class="ph ph-check"></i>
+                    Salvar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="ph ph-warning"></i>
+                    Confirmar Exclusão
+                </h3>
+                <button class="modal-close" id="closeConfirmModal">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja excluir este usuário?</p>
+                <input type="hidden" id="deleteId">
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancelDelete">
+                    <i class="ph ph-x"></i>
+                    Cancelar
+                </button>
+                <button class="btn-danger" id="confirmDelete">
+                    <i class="ph ph-trash"></i>
+                    Excluir
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-message" id="toastMessage"></div>
+        <button class="toast-close" id="closeToast">
+            <i class="ph ph-x"></i>
+        </button>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
